@@ -8,7 +8,7 @@ jobs:
     env:
       MYSQL_USER: myapp
       MYSQL_DB: test_database
-      MYSQL_HOST: localhost
+      MYSQL_HOST: 127.0.0.1
       MYSQL_PASSWORD: ${{ secrets.RAILS_TEST_DB_PASSWORD }}
       MYSQL_ROOT_PASSWORD: ${{ secrets.RAILS_TEST_DB_ROOT_PASSWORD }}
     services:
@@ -45,6 +45,9 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - name: Debug
+        run: |
+          mysqladmin variables | grep socket
       - name: Install packages
         run: |
           yarn install --pure-lockfile
