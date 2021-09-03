@@ -47,7 +47,7 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Debug
         run: |
-          mysqladmin --host 127.0.0.1 --port ${{ job.services.mysql.ports[3306] }} --user root -p  ${{ env.MYSQL_ROOT_PASSWORD }} variables | grep socket
+          mysqladmin --host=localhost --port ${{ job.services.mysql.ports[3306] }} --user root --password  ${{ env.MYSQL_ROOT_PASSWORD }} variables | grep socket
       - name: Install packages
         run: |
           yarn install --pure-lockfile
