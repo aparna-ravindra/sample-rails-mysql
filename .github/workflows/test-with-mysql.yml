@@ -1,0 +1,20 @@
+
+name: Verify
+on: [push]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    env:
+      MYSQL_USER: myapp
+      MYSQL_DB: test_database
+      MYSQL_HOST: localhost
+      MYSQL_PASSWORD: ${{ secrets.RAILS_TEST_DB_PASSWORD }}
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_DATABASE: ${{ env.MYSQL_DB }}
+          MYSQL_USER: ${{ env.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ env.MYSQL_PASSWORD }}
+          MYSQL_ROOT_PASSWORD: rootpassword
