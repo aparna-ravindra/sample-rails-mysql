@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       MYSQL_USER: myapp
-      MYSQL_DB: test_database
+      MYSQL_DB: sample_rails_mysql_development
       MYSQL_HOST: 127.0.0.1
       MYSQL_PASSWORD: ${{ secrets.RAILS_TEST_DB_PASSWORD }}
       MYSQL_ROOT_PASSWORD: ${{ secrets.RAILS_TEST_DB_ROOT_PASSWORD }}
@@ -58,8 +58,10 @@ jobs:
           bundle install --jobs 4 --retry 3
           bin/rails db:setup
         env: 
+          RAILS_ENV: test
           DATABASE_URL: mysql2://${{ env.MYSQL_USER }}:${{ env.MYSQL_PASSWORD }}@127.0.0.1:3306/${{ env.MYSQL_DATABASE }}
       - name: Run tests
         run: bundle exec rake test 
         env:
+          RAILS_ENV: test
           DATABASE_URL: mysql2://${{ env.MYSQL_USER }}:${{ env.MYSQL_PASSWORD }}@127.0.0.1:3306/${{ env.MYSQL_DATABASE }}
