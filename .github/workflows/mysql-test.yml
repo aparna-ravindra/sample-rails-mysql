@@ -3,7 +3,7 @@ name: MYSQL
 on: [push]
 
 jobs:
-  run-tests:
+  debug:
     runs-on: ubuntu-latest
     env:
       MYSQL_USER: myapp
@@ -28,6 +28,6 @@ jobs:
     steps:
       - name: Debug
         run: |
-          mysql -u ${{ env.MYSQL_USER }} -p${{ env.MYSQL_PASSWORD }} <<MY_QUERY
+          mysql --host=127.0.0.1 --user=${{ env.MYSQL_USER }} --password={{ env.MYSQL_PASSWORD }} ${{ env.MYSQL_DB }} <<MY_QUERY
           SHOW GRANTS;
           MY_QUERY
