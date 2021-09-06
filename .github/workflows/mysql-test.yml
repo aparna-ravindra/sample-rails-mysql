@@ -28,6 +28,6 @@ jobs:
     steps:
       - name: Debug
         run: |
-          mysql --host=127.0.0.1 --user=${{ env.MYSQL_USER }} --password={{ env.MYSQL_PASSWORD }} ${{ env.MYSQL_DB }} <<MY_QUERY
+          mysql --host=127.0.0.1 --user=${{ env.MYSQL_USER }} --password=${{ env.MYSQL_PASSWORD }} ${{ env.MYSQL_DB }} <<MY_QUERY
           SHOW GRANTS;
           MY_QUERY
