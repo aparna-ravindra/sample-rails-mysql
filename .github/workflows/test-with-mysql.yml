@@ -52,11 +52,11 @@ jobs:
       - name: Install packages
         run: |
           yarn install --pure-lockfile
+      # make sure config.active_record.schema_format = :sql is set in config/environments/development.rb
       - name: Setup test database
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
-          bin/rails db:migrate
           bin/rails db:setup
         env: 
           RAILS_ENV: test
