@@ -8,7 +8,6 @@ jobs:
     env:
       MYSQL_USER: myapp
       MYSQL_DB: sample_rails_mysql_test
-      MYSQL_HOST: 127.0.0.1
       MYSQL_PASSWORD: ${{ secrets.RAILS_TEST_DB_PASSWORD }}
       MYSQL_ROOT_PASSWORD: ${{ secrets.RAILS_TEST_DB_ROOT_PASSWORD }}
     services:
@@ -61,9 +60,9 @@ jobs:
           bin/rails db:setup
         env: 
           RAILS_ENV: test
-          DATABASE_URL: mysql2://${{ env.MYSQL_USER }}:${{ env.MYSQL_PASSWORD }}@127.0.0.1:3306/${{ env.MYSQL_DATABASE }}
+          DATABASE_URL: mysql2://${{ env.MYSQL_USER }}:${{ env.MYSQL_PASSWORD }}@127.0.0.1:3306/${{ env.MYSQL_DB }}
       - name: Run tests
         run: bundle exec rake test 
         env:
           RAILS_ENV: test
-          DATABASE_URL: mysql2://${{ env.MYSQL_USER }}:${{ env.MYSQL_PASSWORD }}@127.0.0.1:3306/${{ env.MYSQL_DATABASE }}
+          DATABASE_URL: mysql2://${{ env.MYSQL_USER }}:${{ env.MYSQL_PASSWORD }}@127.0.0.1:3306/${{ env.MYSQL_DB }}
