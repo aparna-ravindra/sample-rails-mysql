@@ -51,7 +51,6 @@ jobs:
       - name: Install packages
         run: |
           yarn install --pure-lockfile
-      # make sure config.active_record.schema_format = :sql is set in application.rb
       - name: Setup test database
         run: |
           gem install bundler
