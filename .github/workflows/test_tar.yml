@@ -10,6 +10,7 @@ jobs:
     - name: Cache Repository
       uses: actions/cache@v3
       with:
+        key: cache_1005_01
         path: |
           ~/
           !~/.git/
